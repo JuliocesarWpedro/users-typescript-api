@@ -1,0 +1,21 @@
+{
+  "name": "users-typescript-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon --exec npx ts-node src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "install": "^0.13.0",
+    "nodemon": "^3.0.2",
+    "npm": "^10.2.5"
+  }
+}
