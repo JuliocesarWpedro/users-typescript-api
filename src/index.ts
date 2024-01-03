@@ -16,6 +16,10 @@ const main = async () => {
   app.use(express.json());
   await MongoClient.connect();
 
+  app.get('/', () => {
+    console.log('Server connected');
+  });
+
   app.get('/users', async (req, res) => {
     const mongoGetUsersRepository = new MongoGetUsersRepository();
     const getUsersController = new GetUsersController(mongoGetUsersRepository);
