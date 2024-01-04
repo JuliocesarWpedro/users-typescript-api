@@ -10,7 +10,6 @@ export class CreateUserController implements IController {
     httpRequest: HttpRequest<CreateUserParams>,
   ): Promise<HttpResponse<User | string>> {
     try {
- 
       const requiredFields = ['firstName', 'lastName', 'password', 'email'];
 
       for (const field of requiredFields) {
@@ -18,18 +17,16 @@ export class CreateUserController implements IController {
           return badRequest(`Field ${field} is required`);
         }
       }
-
-      const emailIsValid = validator.isEmail(httpRequest.body!.email);
+      const email = httpRequest.body!.email;
+      console.log('this is email', email);
+      const emailIsValid = validator.isEmail(email);
 
       if (!emailIsValid) {
         return badRequest('E-mail is invalid');
       }
-
-      const existingUser = await MongoClient.db.collection('users').findOne({
-        email: httpRequest.body!.email,
-      });
-
- 
+      const existingUser = await MongoClient.db
+        .collection('users')
+        .findOne({ email: httpRequest.body!.email });
 
       if (existingUser) {
         return badRequest('E-mail already exists');

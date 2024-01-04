@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import { config } from 'dotenv';
 import { GetUsersController } from './controllers/get-users/get-users';
 import { MongoGetUsersRepository } from './repositories/get-users/mongo-get-users';
@@ -14,10 +15,11 @@ const main = async () => {
   config();
   const app = express();
   app.use(express.json());
+  app.use(cors());
   await MongoClient.connect();
 
   app.get('/', () => {
-    console.log('Server connected');
+    return 'Server connected';
   });
 
   app.get('/users', async (req, res) => {
