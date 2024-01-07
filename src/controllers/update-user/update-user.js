@@ -28,9 +28,9 @@ class UpdateUserController {
                     return (0, helpers_1.badRequest)('Missing user id');
                 }
                 const allowedFieldsToUpdate = [
-                    'firstName',
-                    'lastName',
-                    'password',
+                    'name',
+                    'email',
+                    'telephone',
                 ];
                 const someFieldIsNotAllowedToUpdate = Object.keys(body).some((key) => !allowedFieldsToUpdate.includes(key));
                 if (someFieldIsNotAllowedToUpdate) {
