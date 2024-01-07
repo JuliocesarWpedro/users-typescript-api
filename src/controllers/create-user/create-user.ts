@@ -10,7 +10,7 @@ export class CreateUserController implements IController {
     httpRequest: HttpRequest<CreateUserParams>,
   ): Promise<HttpResponse<User | string>> {
     try {
-      const requiredFields = ['firstName', 'lastName', 'password', 'email'];
+      const requiredFields = ['name', 'telephone', 'email'];
 
       for (const field of requiredFields) {
         if (!httpRequest?.body?.[field as keyof CreateUserParams]?.length) {
@@ -18,7 +18,6 @@ export class CreateUserController implements IController {
         }
       }
       const email = httpRequest.body!.email;
-      console.log('this is email', email);
       const emailIsValid = validator.isEmail(email);
 
       if (!emailIsValid) {

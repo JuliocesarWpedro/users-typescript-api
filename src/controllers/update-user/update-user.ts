@@ -21,9 +21,9 @@ export class UpdateUserController implements IController {
         return badRequest('Missing user id');
       }
       const allowedFieldsToUpdate: (keyof UpdateUserParams)[] = [
-        'firstName',
-        'lastName',
-        'password',
+        'name',
+        'email',
+        'telephone',
       ];
 
       const someFieldIsNotAllowedToUpdate = Object.keys(body).some(
