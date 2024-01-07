@@ -30,9 +30,9 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     app.use(express_1.default.json());
     app.use((0, cors_1.default)());
     yield mongo_1.MongoClient.connect();
-    app.get('/', () => {
-        return 'Server connected';
-    });
+    app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        res.status(200).send('Server connected');
+    }));
     app.get('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const mongoGetUsersRepository = new mongo_get_users_1.MongoGetUsersRepository();
         const getUsersController = new get_users_1.GetUsersController(mongoGetUsersRepository);
