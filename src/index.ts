@@ -18,8 +18,8 @@ const main = async () => {
   app.use(cors());
   await MongoClient.connect();
 
-  app.get('/', () => {
-    return 'Server connected';
+  app.get('/', async (req, res) => {
+    res.status(200).send('Server connected');
   });
 
   app.get('/users', async (req, res) => {
