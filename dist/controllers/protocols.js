@@ -8,3 +8,4 @@ var HttpStatusCode;
     HttpStatusCode[HttpStatusCode["SERVER_ERROR"] = 500] = "SERVER_ERROR";
     HttpStatusCode[HttpStatusCode["CREATED"] = 201] = "CREATED";
 })(HttpStatusCode || (exports.HttpStatusCode = HttpStatusCode = {}));
+//# sourceMappingURL=protocols.js.map

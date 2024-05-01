@@ -20,20 +20,24 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MongoGetUsersRepository = void 0;
+exports.MongoCreateUserRepository = void 0;
 const mongo_1 = require("../../database/mongo");
-class MongoGetUsersRepository {
-    getUsers() {
+class MongoCreateUserRepository {
+    createUser(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            const users = yield mongo_1.MongoClient.db
+            const { insertedId } = yield mongo_1.MongoClient.db
                 .collection('users')
-                .find({})
-                .toArray();
-            return users.map((_a) => {
-                var { _id } = _a, rest = __rest(_a, ["_id"]);
-                return (Object.assign(Object.assign({}, rest), { id: _id.toHexString() }));
-            });
+                .insertOne(params);
+            const user = yield mongo_1.MongoClient.db
+                .collection('users')
+                .findOne({ _id: insertedId });
+            if (!user) {
+                throw new Error('User not created');
+            }
+            const { _id } = user, rest = __rest(user, ["_id"]);
+            return Object.assign({ id: _id.toHexString() }, rest);
         });
     }
 }
-exports.MongoGetUsersRepository = MongoGetUsersRepository;
+exports.MongoCreateUserRepository = MongoCreateUserRepository;
+//# sourceMappingURL=mongo-create-user.js.map
